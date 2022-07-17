@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dither", "Dither\Dither.csproj", "{D73481A6-FA85-46F7-AA79-8C0B3A291FEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsLib", "Dither\GraphicsLib.csproj", "{D73481A6-FA85-46F7-AA79-8C0B3A291FEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicLibTest", "GraphicLibTest\GraphicLibTest.csproj", "{07D98F4F-C5FC-4172-988B-FAB3D861525D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D73481A6-FA85-46F7-AA79-8C0B3A291FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D73481A6-FA85-46F7-AA79-8C0B3A291FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D73481A6-FA85-46F7-AA79-8C0B3A291FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D98F4F-C5FC-4172-988B-FAB3D861525D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D98F4F-C5FC-4172-988B-FAB3D861525D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D98F4F-C5FC-4172-988B-FAB3D861525D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D98F4F-C5FC-4172-988B-FAB3D861525D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

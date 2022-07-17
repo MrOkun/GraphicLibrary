@@ -8,7 +8,7 @@ using System.Drawing;
 using FastBitmapLib;
 using System.IO;
 
-namespace Dither
+namespace GraphicLib
 {
     public class FloydSteinbergDither
     {
