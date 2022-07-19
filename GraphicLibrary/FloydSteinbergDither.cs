@@ -1,17 +1,16 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 using FastBitmapLib;
-using System.IO;
 
-namespace GraphicLib
+namespace GraphicLibrary
 {
     public class FloydSteinbergDither
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image">Image to be dithered</param>
+        /// <param name="steps">The number of steps by which the palette will be truncated</param>
+        /// <returns></returns>
         public Bitmap Dither(Bitmap image, int steps)
         {
             image = (Bitmap)Convert(image);
