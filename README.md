@@ -2,5 +2,4 @@
 
 ### Example
 
-![Alt text](https://raw.githubusercontent.com/MrOkun/DitherLib/main/image.png "Start")
-
+![Alt text](https://raw.githubusercontent.com/MrOkun/DitheGraphicLibraryrLib/main/image.png "Start")
