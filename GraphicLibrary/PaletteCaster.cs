@@ -55,7 +55,7 @@ namespace GraphicLibrary
             Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
             
             Graphics g = Graphics.FromImage(newImage);
-            g.DrawImage(image, 0, 0);
+            g.DrawImage(image, 0, 0, image.Width, image.Height);
             g.Save();
 
             return newImage;
