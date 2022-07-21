@@ -13,7 +13,8 @@ namespace GraphicsApp
             WebClient client = new WebClient();
             PaletteCaster paletteCaster = new PaletteCaster();
             ColorConversion colorConversion = new ColorConversion();
-            FloydSteinbergDither floydSteinbergDither = new FloydSteinbergDither(); 
+            FloydSteinbergDither floydSteinbergDither = new FloydSteinbergDither();
+            Kernel kernel = new Kernel();
 
             Console.WriteLine("Demonstratiom app started.");
 
@@ -26,8 +27,14 @@ namespace GraphicsApp
 
             Bitmap image = (Bitmap)Bitmap.FromFile("img/image.png");
 
-            Bitmap tempimage = paletteCaster.Render(image, paletteCaster.demoPalette);
+            Bitmap tempimage;
+
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            tempimage = paletteCaster.Render(image, paletteCaster.demoPalette);
             tempimage.Save("img/imagePaletted.png");
+
+            Console.WriteLine("img/imagePaletted.png - saved");
 
             tempimage = colorConversion.ByRed(image);
             tempimage.Save("img/imageByRed.png");
@@ -36,10 +43,14 @@ namespace GraphicsApp
             tempimage = colorConversion.ByBlue(image);
             tempimage.Save("img/imageByBlue.png");
 
+            Console.WriteLine("img/imageByRed.png - saved \nimg/imageByGreen.png - saved \nimg/imageByBlue.png - saved");
+
             tempimage = colorConversion.Luminance(image);
             tempimage.Save("img/imageByLuminance.png");
             tempimage = colorConversion.Averge(image);
             tempimage.Save("img/imageByAverge.png");
+
+            Console.WriteLine("img/imageByLuminance.png - saved \nimg/imageByAverge.png - saved");
 
             tempimage = floydSteinbergDither.Dither(image, 4);
             tempimage.Save("img/imageDithered (4).png");
@@ -47,6 +58,30 @@ namespace GraphicsApp
             tempimage.Save("img/imageDithered (8).png");
             tempimage = floydSteinbergDither.Dither(image, 16);
             tempimage.Save("img/imageDithered (16).png");
+
+            Console.WriteLine("img/imageDithered.png - saved | x4 x8 x16");
+
+            tempimage = kernel.ByKernel(image, 1, Color.FromArgb(0, 0, 0, 0));
+            tempimage.Save("img/1Kernel.png");
+
+            Console.WriteLine("img/Kernel.png - saved | x1");
+
+            tempimage = kernel.ByKernel(image, 2, Color.FromArgb(0, 0, 0, 0));
+            tempimage.Save("img/2Kernel.png");
+
+            Console.WriteLine("img/Kernel.png - saved | x2");
+
+            tempimage = kernel.ByKernel(image, 10, Color.FromArgb(0, 0, 0, 0));
+            tempimage.Save("img/10Kernel.png");
+
+            Console.WriteLine("img/Kernel.png - saved | x10");
+
+            tempimage = kernel.ByKernel(image, 20, Color.FromArgb(0, 0, 0, 0));
+            tempimage.Save("img/20Kernel.png");
+
+            Console.WriteLine("img/Kernel.png - saved | x20");
+
+            Console.ResetColor();
 
             Process.Start("explorer.exe", "img");
         }
