@@ -19,10 +19,7 @@ namespace GraphicLibrary
         Color A_0m1 { get; set; }
         Color Ap1m1 { get; set; }
 
-        public Kernel()
-        {
-
-        }
+        public Kernel() {}
 
         public Kernel(Color m1p1, Color _0p1, Color p1p1, Color m10, Color _00, Color p10, Color m1m1, Color _0m1, Color p1m1)
         {
@@ -45,6 +42,14 @@ namespace GraphicLibrary
 
             return Color.FromArgb((int)Math.Round(Red, 0), (int)Math.Round(Green, 0), (int)Math.Round(Blue, 0));
         }
+
+        /// <summary>
+        /// Image blur.
+        /// </summary>
+        /// <param name="image">Image to be blured</param>
+        /// <param name="step">Blur iterations</param>
+        /// <param name="nullColor">Color that be used if some pixel will missed.</param>
+        /// <returns></returns>
 
         public Bitmap ByKernel(Bitmap image, int step, Color nullColor)
         {
@@ -69,96 +74,189 @@ namespace GraphicLibrary
                 {
                     Color pixelColor, Am1p1, A_0p1, Ap1p1, Am10, A_00, Ap10, Am1m1, A_0m1, Ap1m1;
 
-                    try
+                    int tempX, tempY;
+
+                    tempX = x - 1;
+                    tempY = y + 1;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x - 1, y + 1);
-                        Am1p1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+                            Am1p1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            Am1p1 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         Am1p1 = nullColor;
                     }
 
-                    try
+                    tempX = x;
+                    tempY = y + 1;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x, y + 1);
-                        A_0p1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+                            A_0p1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            A_0p1 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         A_0p1 = nullColor;
                     }
 
-                    try
+
+                    tempX = x + 1;
+                    tempY = y + 1;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x + 1, y + 1);
-                        Ap1p1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+                            Ap1p1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            Ap1p1 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         Ap1p1 = nullColor;
                     }
 
-                    try
+                    tempX = x - 1;
+                    tempY = y;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x - 1, y);
-                        Am10 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+                            Am10 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            Am10 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         Am10 = nullColor;
                     }
 
-                    try
+                    tempX = x;
+                    tempY = y;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x, y);
-                        A_00 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+                            A_00 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            A_00 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         A_00 = nullColor;
                     }
 
-                    try
+                    tempX = x + 1;
+                    tempY = y;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x + 1, y);
-                        Ap10 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+                            Ap10 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            Ap10 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         Ap10 = nullColor;
                     }
 
-                    try
+                    tempX = x - 1;
+                    tempY = y - 1;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x - 1, y - 1);
-                        Am1m1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+                            Am1m1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            Am1m1 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         Am1m1 = nullColor;
                     }
 
-                    try
+                    tempX = x;
+                    tempY = y - 1;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x, y - 1);
-                        A_0m1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+
+                            A_0m1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            A_0m1 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         A_0m1 = nullColor;
                     }
 
-                    try
+                    tempX = x;
+                    tempY = y - 1;
+
+                    if (tempX < newImage.Width & tempX > 0)
                     {
-                        pixelColor = newImage.GetPixel(x + 1, y - 1);
-                        Ap1m1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        if (tempY<newImage.Height &tempY > 0)
+                        {
+                            pixelColor = newImage.GetPixel(tempX, tempY);
+                            Ap1m1 = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                        }
+                        else
+                        {
+                            Ap1m1 = nullColor;
+                        }
                     }
-                    catch
+                    else
                     {
                         Ap1m1 = nullColor;
                     }
-
 
                     Kernel kernel = new Kernel(Am1p1, A_0p1, Ap1p1, Am10, A_00, Ap10, Am1m1, A_0m1, Ap1m1);
 

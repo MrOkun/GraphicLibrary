@@ -61,27 +61,47 @@ namespace GraphicsApp
 
             Console.WriteLine("img/imageDithered.png - saved | x4 x8 x16");
 
-            tempimage = kernel.ByKernel(image, 1, Color.FromArgb(0, 0, 0, 0));
+            Stopwatch stop1 = new Stopwatch();
+            stop1.Start();
+
+            tempimage = kernel.ByKernel(image, 1, Color.Black);
             tempimage.Save("img/1Kernel.png");
 
-            Console.WriteLine("img/Kernel.png - saved | x1");
+            stop1.Stop();
 
-            tempimage = kernel.ByKernel(image, 2, Color.FromArgb(0, 0, 0, 0));
+            Console.WriteLine($"img/Kernel.png - saved | x1 ({stop1.ElapsedMilliseconds} ms)");
+
+            Stopwatch stop2 = new Stopwatch();
+            stop2.Start();
+
+            tempimage = kernel.ByKernel(image, 2, Color.Black);
             tempimage.Save("img/2Kernel.png");
 
-            Console.WriteLine("img/Kernel.png - saved | x2");
+            stop2.Stop();
 
-            tempimage = kernel.ByKernel(image, 10, Color.FromArgb(0, 0, 0, 0));
+            Console.WriteLine($"img/Kernel.png - saved | x2 ({stop2.ElapsedMilliseconds} ms)");
+
+            Stopwatch stop3 = new Stopwatch();
+            stop3.Start();
+
+            tempimage = kernel.ByKernel(image, 10, Color.Black);
             tempimage.Save("img/10Kernel.png");
 
-            Console.WriteLine("img/Kernel.png - saved | x10");
+            stop3.Stop();
 
-            tempimage = kernel.ByKernel(image, 20, Color.FromArgb(0, 0, 0, 0));
+            Console.WriteLine($"img/Kernel.png - saved | x10 ({stop3.ElapsedMilliseconds} ms)");
+
+            Stopwatch stop4 = new Stopwatch();
+            stop3.Start();
+
+            tempimage = kernel.ByKernel(image, 20, Color.Black);
             tempimage.Save("img/20Kernel.png");
 
-            Console.WriteLine("img/Kernel.png - saved | x20");
+            stop4.Stop();
 
-            Console.ResetColor();
+            Console.WriteLine($"img/Kernel.png - saved | x20 ({stop4.ElapsedMilliseconds} ms)");
+
+            Console.ForegroundColor = ConsoleColor.White;
 
             Process.Start("explorer.exe", "img");
         }
