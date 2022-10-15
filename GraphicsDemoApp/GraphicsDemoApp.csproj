@@ -5,14 +5,23 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageProjectUrl>https://github.com/MrOkun/GraphicLibrary</PackageProjectUrl>
+    <PackageIcon>PostImage.jpg</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\GraphicLibrary\PostImage.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GraphicLibrary\GraphicLibrary.csproj" />
+    <ProjectReference Include="..\GraphicLibrary\OkunGraphicLibrary.csproj" />
   </ItemGroup>
 
 </Project>

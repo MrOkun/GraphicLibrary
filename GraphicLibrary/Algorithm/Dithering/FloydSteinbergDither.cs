@@ -1,7 +1,8 @@
 ﻿using System.Drawing;
 using FastBitmapLib;
+using OkunGraphicLibrary.Base;
 
-namespace GraphicLibrary
+namespace OkunGraphicLibrary.Algorithm.Dithering
 {
     public class FloydSteinbergDither
     {
@@ -13,7 +14,7 @@ namespace GraphicLibrary
         /// <returns></returns>
         public Bitmap Dither(Bitmap image, int steps)
         {
-            image = (Bitmap)Convert(image);
+            image = (Bitmap)image.Fix();
 
             FastBitmap fastBitmap = new FastBitmap(image);
 
@@ -54,7 +55,7 @@ namespace GraphicLibrary
 
         private double closestStep(int max, int steps, int value)
         {
-            return Math.Round((steps * value) / 255 * Math.Floor(255 / (double)steps));
+            return Math.Round(steps * value / 255 * Math.Floor(255 / (double)steps));
         }
 
         private void distributeError(FastBitmap fastBitmap, int x, int y, double errR, double errG, double errB)
@@ -74,7 +75,7 @@ namespace GraphicLibrary
             var b = clr.B;
 
             int Red = (int)(r + errR * factor);
-            int Green = (int)(g + (errG * factor));
+            int Green = (int)(g + errG * factor);
             int Blue = (int)(b + errB * factor);
 
             if (Red > 255)
@@ -93,19 +94,6 @@ namespace GraphicLibrary
             var newClr = Color.FromArgb(Red, Green, Blue);
 
             fastBitmap.SetPixel(x, y, newClr);
-        }
-
-        private Image Convert(Bitmap oldbmp)
-        {
-            Bitmap clone = new Bitmap(oldbmp.Width, oldbmp.Height,
-                System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-
-            using (Graphics gr = Graphics.FromImage(clone))
-            {
-                gr.DrawImage(oldbmp, new Rectangle(0, 0, clone.Width, clone.Height));
-            }
-
-            return clone;
         }
     }
 }

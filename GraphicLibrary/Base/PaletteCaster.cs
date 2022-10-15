@@ -6,26 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraphicLibrary
+namespace OkunGraphicLibrary.Base
 {
-
     public class PaletteCaster
     {
-        public List<Color>? demoPalette = new List<Color>()
+        public List<Color> demoStringPalette = new List<Color>()
         {
-            "#1b2546".ToHex(),
-            "#4b515d".ToHex(),
-            "#787d87".ToHex(),
-            "#8dacc8".ToHex(),
-            "#bddeef".ToHex()
+            (Color)new ColorConverter().ConvertFromString("#1b2546"),
+            (Color)new ColorConverter().ConvertFromString("#4b515d"),
+            (Color)new ColorConverter().ConvertFromString("#787d87"),
+            (Color)new ColorConverter().ConvertFromString("#8dacc8"),
+            (Color)new ColorConverter().ConvertFromString("#bddeef")
         };
-
-
-        private List<Color[]>? _paletts;
 
         public Bitmap Render(Bitmap bitmap, List<Color> _pallet)
         {
-            Bitmap mbitmap = BitmapFix(bitmap);
+            Bitmap mbitmap = (Bitmap)bitmap.Fix();
 
             FastBitmap fastBitmap = new FastBitmap(mbitmap);
 
@@ -48,17 +44,6 @@ namespace GraphicLibrary
             fastBitmap.Unlock();
 
             return mbitmap;
-        }
-
-        private Bitmap BitmapFix(Bitmap image)
-        {
-            Bitmap newImage = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
-            
-            Graphics g = Graphics.FromImage(newImage);
-            g.DrawImage(image, 0, 0, image.Width, image.Height);
-            g.Save();
-
-            return newImage;
         }
 
         private int GetDistance(Color current, Color match) //Euclidean sRGB
